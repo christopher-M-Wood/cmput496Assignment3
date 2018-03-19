@@ -216,6 +216,17 @@ class GoBoardUtil(object):
 			return GoBoardUtil.filter_moves(board,last_empties,True)
 		else:
 			return []
+	
+	@staticmethod
+	def atariDefense(board):
+		last_empties = board.last_moves_empty_neighbors
+		n = []
+		for c in last_empties:
+			n.append(board._neighbors(c))
+		s = []
+		for c in n:
+			if board._points_color(c) == board.current_player:
+				s.append(c)
 
     @staticmethod 
     def filter_moves_and_generate(board, moves, check_selfatari):
