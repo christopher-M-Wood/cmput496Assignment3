@@ -212,8 +212,9 @@ class GoBoardUtil(object):
 	@staticmethod
 	def atariCapture(board):
 		last_empties = board.last_moves_empty_neighbors
-		if len(last_empties) == 1:
-			return GoBoardUtil.filter_moves(board,last_empties,True)
+		filtered = GoBoardUtil.filter_moves(board,last_empties,True)
+		if len(filtered) == 1:
+			return filtered
 		else:
 			return []
 	
