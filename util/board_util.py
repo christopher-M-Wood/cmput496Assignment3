@@ -195,6 +195,7 @@ class GoBoardUtil(object):
             Use in UI only. For playing, use generate_move_with_filter
             which is more efficient
         """
+		atari_moves = atariCapture(board)
         if pattern:
             pattern_moves = []
             pattern_moves = GoBoardUtil.generate_pattern_moves(board)
@@ -202,6 +203,14 @@ class GoBoardUtil(object):
             if len(pattern_moves) > 0:
                 return pattern_moves, "Pattern"
         return GoBoardUtil.generate_random_moves(board,True), "Random"
+	
+	@staticmethod
+	def atariCapture(board):
+		last_empties = board.last_moves_empty_neighbors
+		if len(last_empties) == 1:
+			return GoBoardUtil.filter_moves(board,last_empties,True)
+		else:
+			return []
 
     @staticmethod 
     def filter_moves_and_generate(board, moves, check_selfatari):
