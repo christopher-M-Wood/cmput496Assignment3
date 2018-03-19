@@ -196,6 +196,11 @@ class GoBoardUtil(object):
             which is more efficient
         """
 		atari_moves = atariCapture(board)
+		if len(atari_moves) > 0:
+			return atari_moves, "AtariCapture"
+		atari_moves = atariDefense(board)
+		if len(atari_moves) > 0:
+			return atari_moves, "AtariDefense"
         if pattern:
             pattern_moves = []
             pattern_moves = GoBoardUtil.generate_pattern_moves(board)
